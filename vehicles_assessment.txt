@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assessment_Test_1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("a)");
+            Console.WriteLine($"number of vehicles sold in april = {func1(30)}");
+            Console.WriteLine($"number of vehicles sold in may = {func1(31)}");
+            Console.WriteLine($"number of vehicles sold in june = {func1(30)}");
+            Console.WriteLine($"number of vehicles sold in july = {func1(31)}");
+            Console.WriteLine($"number of vehicles sold in august = {func1(31)}");
+            Console.WriteLine($"number of vehicles sold in september = {func1(30)}");
+
+            Console.WriteLine();
+
+            Console.WriteLine("b)");
+            Console.WriteLine();
+            Console.WriteLine(retail(30) + retail(31) + retail (30) + 2*retail(31) + retail(30));
+            Console.WriteLine("c)");
+            int corporate = func1(30) + func1(31) + func1(30) + func1(31)+func1(31) + func1(30) - (retail(30) + retail(31) + retail(30) + 2 * retail(31) + retail(30));
+            Console.WriteLine(corporate);
+            Console.WriteLine();
+            Console.WriteLine("d)");
+            Console.WriteLine(" no of vehicles sold from aug 15th to sep 15th = " +  ((func1(31) - func1(14) ) + func1(15)) );
+
+
+        }
+        public static int retail(int n)
+        {
+            int prev = 1;
+            int sum = 0;
+            int x = 1;
+            int cnt = 0;
+            for (int i = 1; i <= n; i++)
+            {
+                if (cnt >= 4) { cnt = 0; prev = prev + 2 * x;x++; continue; }
+                cnt++;
+                sum += prev;
+
+                prev = prev + 2 * x;
+                x++;
+            }
+            return sum;
+        }
+        public static int func1(int n)
+        {
+            int prev = 1;
+            int sum = 0;
+            int x = 1;
+            for(int i = 1; i <=n; i++)
+            {
+                sum += prev;
+                prev = prev + 2 * x;
+                x++;
+            }
+            return sum;
+        }
+    }
+}
